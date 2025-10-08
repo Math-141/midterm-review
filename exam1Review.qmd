@@ -1,0 +1,372 @@
+---
+title: "Math 141 Midterm Exam Review"
+format: pdf
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+##  Exam Structure
+
+- The midterm exam includes two pieces:
+    1. An 2.5 hour take home exam component
+    2. A 10 minute oral exam component (which takes place **AFTER** the take home component)
+- The exam covers all material discussed through Wednesday, October 8th (inclusive of the material on October 8th).
+- We will **not** meet on Thursday or Friday during the week of the midterm exam (Week 7), instead you have scheduled oral exams during those days.
+
+### Take Home (Written) Component
+
+-   Released Monday, Oct 13 at noon. Due Wednesday, Oct 15 at 10am. 
+-   You are allowed to use **course materials** during the exam. Including and limited to: content on the course website, course textbooks, your past labs and homeworks, in-class exercises and quizzes, any notes you've taken in class, and any notes you might have compiled based on the allowed course materials listed here.
+-   You have **2.5 hours** to complete the written component of the exam. You must use this time consecutively. 
+-   You may **not** collaborate or consult with others about the exam. You may not use generative AI or any resources outside of the ones listed above. 
+* Do **NOT** post questions about the exam to any Slack channels.
+
+
+### Oral Component
+
+-   To be completed on Thursday or Friday of Week 7 (Oct 16 or 17), in Library 390 (my office). 
+-   No resources are allowed for the oral exam, except for your completed written exam.
+-   Will include questions about the content of the midterm, and/or conceptual/interpretive questions from the course generally. 
+-   10 minutes long (12 minute appointments for transition buffer). 
+-   Sign up for oral exam times are first come first serve. If you have extended time on exams, you must sign up for 2 consecutive slots. 
+-   Oral exam signup link here: [https://tinyurl.com/math141-midterm](https://tinyurl.com/math141-midterm)
+
+
+##  Studying Checklist
+
+- Review concepts.
+    - Review lecture slides, readings, other course materials.
+    - Make sure you understand each concept discussed.
+    - Identify ideas that are still confusing and bring questions to office hours.
+    - Organize your notes and create a study guide you can quickly and easily refer to during the in-class component.  
+
+- Work through problems.
+    - Review Labs 1 - 5 and make sure you can do each problem on your own and up-tempo (i.e., you don't need to look extensively through your notes to complete the problem). 
+    - Work through the exam practice problems. 
+    - Be sure to practice writing (and troubleshooting) code on your own. 
+  
+- Practice explaining concepts out loud.
+    - Make sure you can explain each line of code in an example to another person.
+    - Talk out conceptual ideas such as interpreting model coefficients or evaluating the generalizability of a sample.
+    - Practice with a study partner: take turns asking and answering questions without referring to notes.
+
+As you are working through the checklist, come by office hours when you have questions or want to talk out some code or your reasoning. Week 6 Lab meetings will also be devoted to exam prep.
+
+## Practice Problems
+
+Note: The number of practice problems are NOT indicative of the length of the exam.
+
+```{r}
+# Load relevant R packages here
+library(tidyverse)
+library(moderndive)
+```
+
+
+#### Problem 1
+
+Nic Marks is a statistician and founder of the Centre for Well-Being at the UK think tank New Economics Foundation.  He and his group created the Happy Planet Index as a measure of the happiness in a country.  One argument of the New Economics Foundation is that we should measure happiness and well-being for a country instead of economic measures, such as, the Gross Domestic Product.  The foundation also tracks the ecological footprint per capita of each country.[^1] We want to determine if you can model the well-being of a country using the ecological footprint. 
+
+[^1]: http://www.happyplanetindex.org
+
+
+```{r}
+# Load the data
+hpi <- read_csv("data/hpi.csv")
+```
+
+
+#### Codebook for the Variables:
+
+* `Region`: Region of the world where country is located. a = Latin America, b = Western nations, c = Middle East, d = Sub-Saharan Africa, e = South Asia, f = East Asia, g = former Communist
+
+* `LifeExpectancy`: Average life expectancy based on the 2011 UNDP Human Development Report
+
+* `WellBeing`:  In a Gallup 2012 World Poll, respondents were asked what step of the "Ladder of Life" are you currently on where 0 = is the worst possible life and 10 = best possible life.
+
+* `Footprint`: This is a measure of resource consumption.  It signifies the amount of land required to sustain a country's consumption per capita and is measured in terms of global hectares.
+
+* `HappyPlanetIndex`: a measure created by Nic Mark which takes into account the life expectancy, well-being, and ecological footprint of a country
+
+* `Population`: Population
+
+* `GDP`: Gross Domestic Product per capita
+
+
+
+a. Produce a plot comparing ecological footprint and well-being.  Discuss any trend you observe.
+
+```{r}
+
+```
+
+
+
+
+b. Add a new column to the dataset that is the (natural) log of `Footprint`.  (Note: the `log()` function will compute the natural log.)
+
+
+```{r}
+
+```
+
+c. Recreate the graph from (a) but with the log of `Footprint`.  Comment on any trends.
+
+```{r}
+
+```
+
+
+
+
+d.  Build the linear regression model for wellbeing using log of footprint.  Interpret the slope term in the context of the data. This problem is a good practice for the oral component.
+
+```{r}
+
+```
+
+
+
+
+
+e.  For a country with an ecological footprint of 4 global hectares per capita, predict the well-being for that country.
+
+
+
+```{r}
+
+```
+
+
+
+
+f. In 2020, the average worldwide life expectancy was 72.27. Create a new variable that classifies each country as either being above (or equal to) the worldwide average or being below the worldwide average. Then print a wrangled data frame that shows the number of countries in each group.
+
+
+```{r}
+
+```
+
+g. Create the following two graphs:
+    + One that explores the relationship between `Region` and the variable you created in (f)
+    + One that explores the relationship between `Region` and `LifeExpentancy`
+
+```{r}
+
+```
+
+h. Identify one key take-away message from each of the plots in (g). 
+
+
+
+
+i. Build two more models for `WellBeing` but this time include `Region` (in addition to log of `Footprint`).  For one model, assume equal slopes and for the other, allow the slopes to vary.  Pick two of the regions.  For each, determine the slope under both models.
+
+
+```{r}
+
+```
+
+
+
+
+j.  Interpret the estimated coefficient associated with the term labeled `Region: b` for both the models you built in (i).  
+
+
+
+
+For Problems 2 - 3, we will use data from the `nycflights13` dataset, which contains all flights from NYC in 2013.  Below we have subset the data to only include flights to either Portland's airport (PDX) or Seattle's airport (SEA).  Check out `?flights` to read more about the variables in the dataset.
+
+Make sure to run the following chunk before completing the next problems.
+
+
+```{r}
+# Necessary packages
+library(nycflights13)
+
+# Load the data set
+data(flights)
+
+#Subset to only include flights to PDX and SEA
+flightsPNW <- filter(flights, dest %in% c("PDX", "SEA") )
+
+#Add a variable of the month labels
+flightsPNW <- mutate(flightsPNW, month_label = lubridate::month(month, label = TRUE))
+```
+
+
+### Problem 2
+
+For this problem, let's consider Thanksgiving travel and, in particular, let's tackle the question:  *Is it better to fly from New York to Portland on Thanksgiving, the day before Thanksgiving, or the day after Thanksgiving?*
+
+
+a. Create a data frame, called `thanksgiving13`, that only contains the flights from New York to Portland on Thanksgiving, the day before Thanksgiving, or the day after Thanksgiving.
+
+```{r}
+
+```
+
+
+
+b. How many flights went from NYC to PDX on Thanksgiving? On the day before Thanksgiving? On the
+day after Thanksgiving?
+
+```{r}
+
+```
+
+
+
+c. Construct a plot of the departure delays and day for the flights to PDX that happened on Thanksgiving, the day before Thanksgiving, or the day after Thanksgiving. Recognizing that we have very little data, comment on any observed trends.
+
+```{r}
+
+```
+
+
+
+
+### Problem 3
+
+Let's compare the departure and arrival performance of the carriers to each destination. 
+
+
+a. By carrier and destination, compute 
+
+* the total number of flights.
+* the mean and median departure delay.
+* the mean and median arrival delay.
+* the standard deviation of departure delay.
+* the standard deviation of arrival delay.
+
+* Arrange the resulting data frame by the mean departure delays (going from smallest to largest).
+* Make sure to handle missing values!
+
+
+```{r}
+
+```
+
+
+
+
+b. Compare the measures of center.  What can you infer about the shape of departure delays and arrival delays from the measures of center?
+
+
+
+c. Compare the measures of spread.  Is there more variation in the arrival delay times or the departure delay times?  Justify why you think that is.
+
+
+
+
+
+### Problem 4
+
+A 2006 Washington Post article stated that for the essay portion of the 2005-2006 SAT, the students who wrote in cursive scored significantly higher on the essay, on average, than those who wrote in printed block letters.  Researchers wanted to know whether simply writing in cursive would be a way to increase scores.  
+
+a. Identify the explanatory and response variables.
+
+
+
+b. Can we conclude that using cursive causes a student to receive a better score?  If so, explain why.  If not, identify a potential confounding variable and explain how it provides an alternative explanation for why the cursive group had a higher average essay score.
+
+
+
+
+c. The article also mentioned a study in which the same essay was given to all graders but half were randomly given a cursive version and the other a printed block letter version.  In this study, the cursive style scored significantly higher on average.  Explain a key difference between this study and the first study.
+
+
+
+
+d. For the second study, can we now conclude a causal link?  If so, explain why.  If not, identify a potential confounding variable and explain how it provides an alternative explanation for why the cursive group had a higher average essay score.
+
+
+
+
+### Problem 5
+
+Researchers conducted a double-blind experiment to determine whether taking large amounts of Vitamin E protects against prostate cancer.  To study this question, they enrolled 29,133 Finnish men, all smokers, between the ages of 50 and 69.  The men were divided into two groups: one group took vitamin E and the other a placebo.  The researchers followed all the men for eight years and found that the participants taking vitamin E had lower rates of prostate cancer.
+
+a. Explain how random assignment was used and why it was used.
+
+
+
+b. Explain what "double-blind" means in the context of the study and why it was used.
+
+
+
+c. What population is it reasonable to generalize these results to?  Explain your reasoning.
+
+
+
+d. For the population you described in c), is it reasonable to conclude that taking vitamin E causes a reduction in the probability of developing prostate cancer?  Explain your reasoning.
+
+
+
+#### Problem 6
+
+Let's explore the `NHANES` data for this problem.  You can type `?NHANES` in the console to pull up the help file that explains the dataset.
+
+a. Line-by-line, explain the following code.  This problem provides good practice for the oral component.
+
+```{r}
+library(tidyverse)
+library(NHANES)
+
+dat <- NHANES %>%
+  drop_na(Education, HomeOwn) %>%
+  mutate(Ed = case_when(
+    Education %in% c("8th Grade", "9 - 11th Grade") ~ "No High School Degree", 
+    Education %in% c("High School", "Some College") ~ "High School Degree", 
+    Education == "College Grad" ~ "College Degree")) %>%
+  count(Ed, HomeOwn) %>%
+  group_by(Ed) %>%
+  mutate(thing = n/sum(n))
+dat
+```
+
+
+
+
+b. Explain the following code.  What type of graphic does it generate? This problem provides good practice for the oral component.
+
+```{r, fig.height = 2.5}
+  ggplot(data = dat, mapping = aes(x = Ed, y = thing, fill = HomeOwn)) +
+  geom_col() +
+  coord_flip() 
+```
+
+
+
+
+c. Create a new variable that is the average urine flow (from `UrineFlow1` and `UrineFlow2`) and then find the average urine flow and IQR of urine flow by the categories of `SleepTrouble`, but first remove cases that have missing values for `SleepTrouble`.
+
+```{r}
+
+```
+
+d. Discuss whether or not you think random assignment was used in the collection of the NHANES dataset.  This problem is a good practice for the oral component.
+
+
+
+
+#### Problem 7
+
+
+If you want more practice with deconstructing graphs, visit  Nathan Yau's article ["One Dataset, Visualized 25 Ways"](https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/#jp-carousel-47350) and deconstruct the graphs.  This problem provides good practice for the oral component.
+
+For each graph, identify:
+
+a. Geometric shape/object: 
+b. Mapping: 
+c. Story? 
+d. Effective at telling the story? 
+
+
